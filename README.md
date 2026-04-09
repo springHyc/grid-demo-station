@@ -30,6 +30,8 @@ npm start
 | `npm run build` | 生产构建至 `build/`，随后将 `build/` 内全部内容同步到**项目根目录**（脚本见 `scripts/sync-build-to-root.js`） |
 | `npm test`      | 运行 Jest 测试（`CI=true npm test` 单次执行）                                                                 |
 
+使用 **pnpm** 时，安装为 `pnpm install`，构建为 `pnpm build`（与 `npm run build` 等价，均会执行 `react-scripts build` 并运行 `scripts/sync-build-to-root.js`）。
+
 ## 源码结构（简要）
 
 | 路径                             | 说明                                                                                               |
@@ -44,7 +46,40 @@ npm start
 
 ## 部署说明
 
-`package.json` 中已设置 `"homepage": "."`，便于部署到任意子路径或静态托管（如 GitHub Pages）。执行 `npm run build` 后，除 `build/` 外，**根目录也会有一份与 `build/` 相同的静态产物**（便于直接把仓库根目录当站点根目录发布）。源码仍在 `src/`、`public/`，请勿与根目录下的 `index.html`、`static/` 等构建产物混淆。
+`package.json` 中已设置 `"homepage": "."`，便于部署到任意子路径或静态托管（如 GitHub Pages）。执行 `npm run build` 或 `pnpm build` 后，除 `build/` 外，**根目录也会有一份与 `build/` 相同的静态产物**（便于直接把仓库根目录当站点根目录发布）。源码仍在 `src/`、`public/`，请勿与根目录下的 `index.html`、`static/` 等构建产物混淆。
+
+### 部署到 GitHub Pages（`*.github.io`）
+
+#### 1. 本地发布流程（在 `gh-pages` 分支上出静态文件）
+
+1. 在 **`master`**（或你的默认开发分支）上改完代码并提交。
+2. 切换到 **`gh-pages`** 分支，把开发分支合并进来（例如 `git checkout gh-pages` → `git merge master`）。
+3. 安装依赖后执行构建（任选其一）：
+   - `pnpm build`
+   - 或 `npm run build`
+4. 将**合并后的代码 + 根目录构建产物**提交并推送，例如：
+   - `git add -A && git commit -m "chore: deploy" && git push origin gh-pages`
+5. 推送完成后，GitHub Pages 会在一段时间内自动更新；站点地址一般为 `https://<用户名>.github.io/<仓库名>/`（若是个站仓库且配置为用户/组织站，则可能是 `https://<用户名>.github.io/`）。
+
+> **说明**：GitHub Pages 从某一**分支的根目录**读静态文件。`pnpm build` / `npm run build` 会把 `build/` 里的内容同步到**仓库根目录**，因此无需再选 `build` 子文件夹；这正是 `scripts/sync-build-to-root.js` 的作用。
+
+#### 2. 仓库里新建项目时的 GitHub Pages 配置（只做一次）
+
+这是最关键的一步，按顺序在网页上操作即可：
+
+1. 打开 GitHub 上的本仓库，点击顶部的 **Settings**。
+2. 左侧菜单找到并点击 **Pages**。
+3. 在 **Build and deployment（构建与部署）** 区域，将 **Source** 选为 **Deploy from a branch**。
+4. 在 **Branch** 下拉框里选择**实际存放静态站点文件的分支**：
+   - 若你按上一节把构建产物放在 **`gh-pages` 分支根目录**，这里选 **`gh-pages`**；
+   - 若你改为在 **`main`** 或 **`master`** 分支根目录放构建产物，则选对应分支。
+5. **Folder（文件夹）** 保持 **`/ (root)`**，点击 **Save**。
+
+保存后页面会提示站点 URL；首次生效可能需要一两分钟。
+
+#### 3. 与 `sync-build-to-root.js` 的关系
+
+GitHub Pages 从所选分支的**根路径**提供文件，而 Create React App 默认只生成在 `build/` 目录下。`scripts/sync-build-to-root.js` 在每次构建结束时把 `build/` 内文件复制到项目根目录，这样你只要把该分支推上去，Pages 用 **root** 即可正确访问 `index.html` 与 `static/` 等资源。
 
 ## 许可与致谢
 
