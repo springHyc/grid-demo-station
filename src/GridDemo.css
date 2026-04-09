@@ -1,0 +1,84 @@
+.GridDemo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  min-width: 280px;
+}
+
+.GridDemo h3 {
+  margin: 12px 0 8px;
+  color: #1a535c;
+}
+
+.GridDemo-operation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 8px 16px 16px;
+}
+
+.GridDemo-grid-wrap {
+  flex: 1;
+  padding: 0 12px 16px;
+}
+
+.GridDemo-items {
+  /* display、grid 相关由内联 style 来自父组件属性 */
+}
+
+.GridDemo-item {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #1a535c;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.GridDemo-item-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #1a535c;
+  color: #fff;
+  line-height: 26px;
+  align-self: center;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+
+.GridDemo-field {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+  margin-top: 6px;
+  font-size: 0.75em;
+  color: #333;
+}
+
+.GridDemo-field span {
+  margin-bottom: 2px;
+  cursor: help;
+}
+
+.GridDemo-field input,
+.GridDemo-field select {
+  font-size: 12px;
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.GridDemo-field input:focus,
+.GridDemo-field select:focus {
+  outline: none;
+  border-color: #1a535c;
+}

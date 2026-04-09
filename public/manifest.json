@@ -1,0 +1,8 @@
+{
+  "short_name": "Grid Demo",
+  "name": "CSS Grid 演示站",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#1a535c",
+  "background_color": "#f7f7f2"
+}
