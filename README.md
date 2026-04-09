@@ -24,26 +24,27 @@ npm start
 
 ## 常用命令
 
-| 命令 | 说明 |
-| --- | --- |
-| `npm start` | 开发模式 |
-| `npm run build` | 生产构建，输出至 `build/` |
-| `npm test` | 运行 Jest 测试（`CI=true npm test` 单次执行） |
+| 命令            | 说明                                                                                                          |
+| --------------- | ------------------------------------------------------------------------------------------------------------- |
+| `npm start`     | 开发模式                                                                                                      |
+| `npm run build` | 生产构建至 `build/`，随后将 `build/` 内全部内容同步到**项目根目录**（脚本见 `scripts/sync-build-to-root.js`） |
+| `npm test`      | 运行 Jest 测试（`CI=true npm test` 单次执行）                                                                 |
 
 ## 源码结构（简要）
 
-| 路径 | 说明 |
-| --- | --- |
-| `src/App.js` | 页头与整体布局 |
-| `src/GridBoxContainer.js` | 左右分栏容器 |
-| `src/GridPropertiesContainer.js` | 左侧父级属性 + 子项说明 |
-| `src/GridDemo.js` | 右侧可交互网格演示 |
-| `src/GridLayoutShowcase.js` | 底部「常见特殊布局」与示例代码 |
-| `src/gridGuideUrl.js` | CSS-Tricks 指南链接常量 |
+| 路径                             | 说明                                                                                               |
+| -------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `src/App.js`                     | 页头与整体布局                                                                                     |
+| `src/GridBoxContainer.js`        | 左右分栏容器                                                                                       |
+| `src/GridPropertiesContainer.js` | 左侧父级属性 + 子项说明                                                                            |
+| `src/GridDemo.js`                | 右侧可交互网格演示                                                                                 |
+| `src/GridLayoutShowcase.js`      | 底部「常见特殊布局」与示例代码                                                                     |
+| `src/gridGuideUrl.js`            | CSS-Tricks 指南链接常量                                                                            |
+| `scripts/sync-build-to-root.js`  | `npm run build` 结束后把 `build/` 复制到根目录；会先删除根目录旧的 `static/`，避免残留旧 hash 文件 |
 
 ## 部署说明
 
-`package.json` 中已设置 `"homepage": "."`，便于部署到任意子路径或静态托管（如 GitHub Pages），构建产物在 `build/` 目录。
+`package.json` 中已设置 `"homepage": "."`，便于部署到任意子路径或静态托管（如 GitHub Pages）。执行 `npm run build` 后，除 `build/` 外，**根目录也会有一份与 `build/` 相同的静态产物**（便于直接把仓库根目录当站点根目录发布）。源码仍在 `src/`、`public/`，请勿与根目录下的 `index.html`、`static/` 等构建产物混淆。
 
 ## 许可与致谢
 
