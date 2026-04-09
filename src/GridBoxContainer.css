@@ -5,6 +5,7 @@
   width: 100%;
   flex-direction: row;
   justify-content: center;
-  align-items: stretch;
+  /* flex 子项默认 stretch 时右侧会被拉满左栏高度，sticky 无法相对视口「钉住」 */
+  align-items: flex-start;
   min-height: calc(100vh - 120px);
 }

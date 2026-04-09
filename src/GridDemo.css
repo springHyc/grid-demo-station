@@ -4,6 +4,12 @@
   flex-direction: column;
   background-color: white;
   min-width: 280px;
+  position: sticky;
+  top: 12px;
+  align-self: flex-start;
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .GridDemo h3 {

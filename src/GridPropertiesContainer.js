@@ -336,8 +336,9 @@ export default class GridPropertiesContainer extends Component {
               </a>
               （文中「Parent Container Properties / Child Element Properties」与本页左右栏对应。）
             </p>
-            <p>常见子项属性与含义：</p>
-            <ul>
+            <div className="ChildProp-glossary">
+              <p className="ChildProp-glossary-intro">常见子项属性与含义：</p>
+              <ul className="ChildProp-glossary-list">
               <li>
                 <strong>grid-column</strong>：grid-column-start / grid-column-end
                 的简写；从第几条列线到第几条，或用 <code>span n</code> 跨多列。
@@ -388,7 +389,8 @@ export default class GridPropertiesContainer extends Component {
                   上对齐 + 靠行向终点（LTR 下多为右）。
                 </span>
               </li>
-            </ul>
+              </ul>
+            </div>
             <p>
               <strong>组合小抄（右侧分两栏填）：</strong>
             </p>
